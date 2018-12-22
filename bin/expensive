@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/expensive.rb"
-require_relative "../lib/parsers/hdfc_credit_card.rb"
+require_relative "../lib/expensive"
+require_relative "../lib/parsers/hdfc_credit_card"
+require_relative "../lib/classifiers/expense"
 
-p Expensive::Parsers::HdfcCreditCard.new(file: ARGV[0]).parse
+# p Expensive::Parsers::HdfcCreditCard.new(file: ARGV[0]).parse
+p Expensive::Classifiers::Expense.new
