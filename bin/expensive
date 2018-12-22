@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/expensive.rb"
+require_relative "../lib/parsers/hdfc_credit_card.rb"
+
+p Expensive::Parsers::HdfcCreditCard.new(file: ARGV[0]).parse

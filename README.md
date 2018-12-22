@@ -4,9 +4,9 @@ A simple expense report generator that parses PDF files that banks, credit card 
 
 ## Aims
 
-- Simple to use
-- Generates usable information
-- Automatic classification of expenses when possible
+- Simple to use (i.e. ideally one command execution)
+- Generate usable information immediately without further parsing
+- Automatic classification of expenses when possible, ask when not & learn
 
 ## Current Status
 
