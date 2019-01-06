@@ -12,7 +12,7 @@ module Expensive
                       "Subscriptions & Recurring/Kickstarter Campaigns",
                       "Subscriptions & Recurring/Namecheap Domain Renewal",
                       "Subscriptions & Recurring/Digital Ocean Hosting",
-                      "Subscriptions & Recurring/DigitalAmazon Subscriptions",
+                      "Subscriptions & Recurring/Amazon Subscriptions",
                       "Subscriptions & Recurring/Adobe Subscription",
                       "Subscriptions & Recurring/Microsoft Subscription",
                       "Subscriptions & Recurring/Netflix Subscription",
@@ -70,7 +70,7 @@ module Expensive
                     "HOTEL ORCHID COCHIN",
                     "CONSOLIDATED FCY MARKUP FEE (Ref# VT183180069014510000229)",
                     "DIGITALOCEAN.COM DIGITALOCE USD 14.16",
-                    "Audible US 888-283-50 USD 14.95"]
+                    "Audible US 888-283-50 USD 14.95"].map(&:upcase)
 
         categories = ["Shopping",
                       "Subscriptions & Recurring",
@@ -121,7 +121,7 @@ module Expensive
         model = Lurn::NaiveBayes::MultinomialNaiveBayes.new
         model.fit(vectors, mapped_categories)
 
-        new_vectors = vectorizer.transform(["Audible US"])
+        new_vectors = vectorizer.transform(["NETFLIX.COM INDIA"])
 
         # get the most probable class for the new document given the training data
         p model.max_class(new_vectors.first)
