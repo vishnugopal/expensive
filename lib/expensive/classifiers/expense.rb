@@ -114,20 +114,19 @@ module Expensive
                              "Subscriptions & Recurring",
                              "Subscriptions & Recurring"]
 
-        vectorizer = Lurn::Text::WordCountVectorizer.new
-        vectorizer.fit(expenses)
-        vectors = vectorizer.transform(expenses)
+        @vectorizer = Lurn::Text::WordCountVectorizer.new
+        @vectorizer.fit(expenses)
+        vectors = @vectorizer.transform(expenses)
 
-        model = Lurn::NaiveBayes::MultinomialNaiveBayes.new
-        model.fit(vectors, mapped_categories)
+        @model = Lurn::NaiveBayes::MultinomialNaiveBayes.new
+        @model.fit(vectors, mapped_categories)
+      end
 
-        new_vectors = vectorizer.transform(["NETFLIX.COM INDIA"])
+      def guess(string:)
+        new_vectors = @vectorizer.transform([string])
 
-        # get the most probable class for the new document given the training data
-        p model.max_class(new_vectors.first)
-
-        # get the probability score for the most probable class
-        p model.max_probability(new_vectors.first)
+        # return guess and probability
+        [@model.max_class(new_vectors.first), @model.max_probability(new_vectors.first)]
       end
     end
   end

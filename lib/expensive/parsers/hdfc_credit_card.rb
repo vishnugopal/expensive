@@ -3,6 +3,7 @@ module Expensive
     class HdfcCreditCard
       def initialize(file:)
         @file_contents = File.read(file)
+        @classifier = Expensive::Classifiers::Expense.new
       end
 
       def parse
@@ -39,7 +40,7 @@ module Expensive
 
             metadata_regex = /#{date}(.*?)#{amount}/
             metadata = transaction_line.match(metadata_regex)[1].strip
-            parsed_transactions << [date, metadata, amount]
+            parsed_transactions << [date, metadata, amount, @classifier.guess(string: metadata)]
           end
         end
 
